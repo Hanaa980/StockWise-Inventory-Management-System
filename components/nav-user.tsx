@@ -22,34 +22,32 @@ import {
 } from "@/components/ui/sidebar"
 import { EllipsisVerticalIcon, CircleUserRoundIcon, CreditCardIcon, BellIcon, LogOutIcon } from "lucide-react"
 
-export function NavUser({
-  user,
-}: {
-  user: {
+export function NavUser({user, isSideBar}: {user: {
     name: string
     email: string
     // avatar: string
-  }
+  },isSideBar:boolean
 }) {
   const { isMobile } = useSidebar()
-
+// const isSideBar:boolean = true;
+ 
   return (
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
+            <SidebarMenuButton 
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className=" hover:bg-transparent"
             >
               <Avatar className="h-8 w-8 rounded-lg ">
                   <AvatarFallback className="rounded-lg">{user.name.slice(0, 2)}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs text-muted-foreground">
+             { isSideBar &&   <span className="truncate text-xs text-muted-foreground">
                   {user.email}
-                </span>
+                </span>}
               </div>
               <EllipsisVerticalIcon className="ml-auto size-4" />
             </SidebarMenuButton>

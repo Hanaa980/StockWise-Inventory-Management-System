@@ -1,18 +1,43 @@
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { SidebarTrigger } from "@/components/ui/sidebar"
+"use client";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Field } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { SearchIcon, Bell } from "lucide-react";
 
-export function SiteHeader() {
+import { NavUser } from "./nav-user";
+import sideBarData from "@/lib/sideBarData";
+import { usePathname } from "next/navigation";
+
+
+export function SiteHeader( ) {
+  const path = usePathname();
   return (
-    <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
-      <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
+    <header className="flex h-15 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear ">
+      <div className="flex w-full items-center gap-2 px-4 lg:gap-2 lg:px-6">
         <SidebarTrigger className="-ml-1" />
-        <Separator
+        {/* <Separator
           orientation="vertical"
-          className="mx-2 data-[orientation=vertical]:h-4"
-        />
-        <h1 className="text-base font-medium">Documents</h1>
+          className="mx-2 data-[orientation=vertical]:h-19"
+        /> */}
+        <div className="flex items-center justify-between w-full ">
+          
+          <h1 className='font-(--font-syne) capitalize'>{path.slice(1).replace('-', ' ')}</h1>
+
+          <div className="flex gap-2 items-center">
+
+            <div className="flex relative">
+              <Input type="search" className="w-26 text-right" placeholder="search" />
+              <SearchIcon className="h-4 w-4 text-muted-foreground absolute bottom-2 left-2" />
+            </div>
+            
+
+            <Bell className="w-10"/>
+             <NavUser  user={sideBarData.user} isSideBar={false} />
+          </div>
+        </div>
       </div>
     </header>
-  )
+  );
 }

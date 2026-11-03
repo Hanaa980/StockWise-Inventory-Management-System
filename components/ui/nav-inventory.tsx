@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -10,6 +10,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { CirclePlusIcon, MailIcon } from "lucide-react"
+import { usePathname } from "next/navigation";
 
 export function NavInventory({
   items,
@@ -20,20 +21,24 @@ export function NavInventory({
     icon?: React.ReactNode
   }[]
 }) {
+  const pathname = usePathname();
+
   return (
     <SidebarGroup>
               <SidebarGroupLabel>INVENTORY</SidebarGroupLabel>
         
       <SidebarGroupContent className="flex flex-col gap-2">
        
-        <SidebarMenu>
+          <SidebarMenu>
           {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title}>
+            <Link href={item.url} key={item.title}>
+              <SidebarMenuItem >
+              <SidebarMenuButton tooltip={item.title} isActive={pathname === `/${item.url}`}>
                 {item.icon}
                 <span>{item.title}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
+            </Link>
           ))}
         </SidebarMenu>
       </SidebarGroupContent>

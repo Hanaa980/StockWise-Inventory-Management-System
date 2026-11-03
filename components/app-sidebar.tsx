@@ -15,207 +15,209 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { LayoutDashboardIcon, ListIcon, ChartBarIcon, FolderIcon, UsersIcon, CameraIcon, FileTextIcon, Settings2Icon, CircleHelpIcon, SearchIcon, DatabaseIcon, FileChartColumnIcon, FileIcon, CommandIcon, Boxes } from "lucide-react"
+// import { LayoutDashboardIcon, ListIcon, ChartBarIcon, FolderIcon, UsersIcon, CameraIcon, FileTextIcon, Settings2Icon, CircleHelpIcon, SearchIcon, DatabaseIcon, FileChartColumnIcon, FileIcon, CommandIcon, Boxes, LayoutDashboard, Package, Tags, Truck, ArrowRightLeft, Triangle, TriangleAlert, ChartColumn, Settings } from "lucide-react"
 import { NavInventory } from "./ui/nav-inventory";
 import { NavManagement } from "./ui/nav-management";
-
-const data = {
-  user: {
-    name: "Hanaa",
-    email: "Hanaaragab228gmail.com",
-  },
-  navMain: [
-    {
-      title: "Overview",
-      url: "#",
-      icon: (
-        <LayoutDashboardIcon
-        />
-      ),
-    },
-    {
-      title: "Products",
-      url: "#",
-      icon: (
-        <ListIcon
-        />
-      ),
-    },
-    {
-      title: "Categories",
-      url: "#",
-      icon: (
-        <ChartBarIcon
-        />
-      ),
-    },
-    {
-      title: "Suppliers",
-      url: "#",
-      icon: (
-        <FolderIcon
-        />
-      ),
-    },
+import sideBarData from "@/lib/sideBarData";
+import { Boxes } from "lucide-react";
+import { usePathname } from "next/navigation";
+// const data = {
+//   user: {
+//     name: "Hanaa",
+//     email: "Hanaaragab228gmail.com",
+//   },
+//   navMain: [
+//     {
+//       title: "Overview",
+//       url: "overview",
+//       icon: (
+//         <LayoutDashboard/>
+//       ),
+//     },
+//     {
+//       title: "Products",
+//       url: "products",
+//       icon: (
+//         <Package
+//         />
+//       ),
+//     },
+//     {
+//       title: "Categories",
+//       url: "categories",
+//       icon: (
+//         <Tags
+//         />
+//       ),
+//     },
+//     {
+//       title: "Suppliers",
+//       url: "suppliers",
+//       icon: (
+//         <Truck
+//         />
+//       ),
+//     },
    
-  ],
-   navInventory: [
-    {
-      title: "Stock Movements",
-      url: "#",
-      icon: (
-        <LayoutDashboardIcon
-        />
-      ),
-    },
-    {
-      title: "Low Stock",
-      url: "#",
-      icon: (
-        <ListIcon
-        />
-      ),
-    },
+//   ],
+//    navInventory: [
+//     {
+//       title: "Stock Movements",
+//       url: "stock-movements",
+//       icon: (
+//         <ArrowRightLeft
+//         />
+//       ),
+//     },
+//     {
+//       title: "Low Stock",
+//       url: "low-stock",
+//       icon: (
+//         <TriangleAlert
+//         />
+//       ),
+//     },
   
    
-  ],
-   navManagement: [
-    {
-      title: "Reports",
-      url: "#",
-      icon: (
-        <LayoutDashboardIcon
-        />
-      ),
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: (
-        <ListIcon
-        />
-      ),
-    },
+//   ],
+//    navManagement: [
+//     {
+//       title: "Reports",
+//       url: "reports",
+//       icon: (
+//         <ChartColumn
+//         />
+//       ),
+//     },
+//     {
+//       title: "Settings",
+//       url: "settings",
+//       icon: (
+//         <Settings
+//         />
+//       ),
+//     },
   
    
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: (
-        <CameraIcon
-        />
-      ),
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: (
-        <FileTextIcon
-        />
-      ),
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: (
-        <FileTextIcon
-        />
-      ),
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: (
-        <Settings2Icon
-        />
-      ),
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: (
-        <CircleHelpIcon
-        />
-      ),
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: (
-        <SearchIcon
-        />
-      ),
-    },
-  ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: (
-        <DatabaseIcon
-        />
-      ),
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: (
-        <FileChartColumnIcon
-        />
-      ),
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: (
-        <FileIcon
-        />
-      ),
-    },
-  ],
-}
+//   ],
+//   navClouds: [
+//     {
+//       title: "Capture",
+//       icon: (
+//         <CameraIcon
+//         />
+//       ),
+//       isActive: true,
+//       url: "#",
+//       items: [
+//         {
+//           title: "Active Proposals",
+//           url: "#",
+//         },
+//         {
+//           title: "Archived",
+//           url: "#",
+//         },
+//       ],
+//     },
+//     {
+//       title: "Proposal",
+//       icon: (
+//         <FileTextIcon
+//         />
+//       ),
+//       url: "#",
+//       items: [
+//         {
+//           title: "Active Proposals",
+//           url: "#",
+//         },
+//         {
+//           title: "Archived",
+//           url: "#",
+//         },
+//       ],
+//     },
+//     {
+//       title: "Prompts",
+//       icon: (
+//         <FileTextIcon
+//         />
+//       ),
+//       url: "#",
+//       items: [
+//         {
+//           title: "Active Proposals",
+//           url: "#",
+//         },
+//         {
+//           title: "Archived",
+//           url: "#",
+//         },
+//       ],
+//     },
+//   ],
+//   navSecondary: [
+//     {
+//       title: "Settings",
+//       url: "#",
+//       icon: (
+//         <Settings2Icon
+//         />
+//       ),
+//     },
+//     {
+//       title: "Get Help",
+//       url: "#",
+//       icon: (
+//         <CircleHelpIcon
+//         />
+//       ),
+//     },
+//     {
+//       title: "Search",
+//       url: "#",
+//       icon: (
+//         <SearchIcon
+//         />
+//       ),
+//     },
+//   ],
+//   documents: [
+//     {
+//       name: "Data Library",
+//       url: "#",
+//       icon: (
+//         <DatabaseIcon
+//         />
+//       ),
+//     },
+//     {
+//       name: "Reports",
+//       url: "#",
+//       icon: (
+//         <FileChartColumnIcon
+//         />
+//       ),
+//     },
+//     {
+//       name: "Word Assistant",
+//       url: "#",
+//       icon: (
+//         <FileIcon
+//         />
+//       ),
+//     },
+//   ],
+// }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const pathname = usePathname();
   return (
-    <Sidebar collapsible="offcanvas" {...props} className="bg-(--primary-color) text-white">
+    <Sidebar collapsible="offcanvas" {...props} className="bg-(--primary-color)">
      
      
-      <SidebarHeader className="">
+      <SidebarHeader className="text-white">
         <SidebarMenu className="">
           <SidebarMenuItem >
             <SidebarMenuButton
@@ -235,15 +237,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
 
-      <SidebarContent className="flex justify-evenly">
-        <NavMain items={data.navMain} />
-        <NavInventory items={data.navInventory} />
-        <NavManagement items={data.navManagement} />
+      <SidebarContent className="flex justify-evenly text-white">
+        <NavMain items={sideBarData.navMain} />
+        <NavInventory items={sideBarData.navInventory} />
+        <NavManagement items={sideBarData.navManagement} />
 
       </SidebarContent>
 
-      <SidebarFooter className="">
-        <NavUser user={data.user} />
+      <SidebarFooter className="text-white ">
+        <NavUser user={sideBarData.user} isSideBar={true} />
+        
       </SidebarFooter>
     </Sidebar>
   )

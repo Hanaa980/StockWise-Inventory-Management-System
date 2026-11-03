@@ -2,8 +2,27 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import Dashboard from "./page";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Children } from "react";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SiteHeader } from "@/components/site-header";
+import { Syne } from 'next/font/google';
 
+import { ChartAreaInteractive } from "@/components/chart-area-interactive"
+import { DataTable } from "@/components/data-table"
+import { SectionCards } from "@/components/section-cards"
 
+// import {data} from "@/app/data";
+
+import {products} from "@/lib/data";
+
+ const syne = Syne({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'], // adjust weights as needed
+});
+
+// export syne;
 
 
 const geistSans = Geist({
@@ -27,8 +46,24 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`font-[inter] h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-[sans-serif] "> <TooltipProvider>
-          {children}
+      <body className={` ${syne.className} min-h-full flex flex-col font-[sans-serif] `}> <TooltipProvider>
+        <SidebarProvider 
+      
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties
+      }
+    >
+      
+      <AppSidebar variant="inset"  />
+      <SidebarInset>
+        <SiteHeader/>
+        <div className="px-5">{children}</div>
+       
+      </SidebarInset>
+    </SidebarProvider>
         </TooltipProvider></body>
     </html>
   );
