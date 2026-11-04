@@ -8,7 +8,7 @@ import { LayoutDashboardIcon, ListIcon, ChartBarIcon, FolderIcon, UsersIcon, Cam
   navMain: [
     {
       title: "Overview",
-      url: "overview",
+      url: "/",
       icon: (
         <LayoutDashboard/>
       ),

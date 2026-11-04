@@ -32,7 +32,7 @@ export function NavUser({user, isSideBar}: {user: {
 // const isSideBar:boolean = true;
  
   return (
-    <SidebarMenu>
+    <SidebarMenu className={`${isSideBar ? "" : "w-15"}`}>
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -43,13 +43,13 @@ export function NavUser({user, isSideBar}: {user: {
               <Avatar className="h-8 w-8 rounded-lg ">
                   <AvatarFallback className="rounded-lg">{user.name.slice(0, 2)}</AvatarFallback>
               </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-             { isSideBar &&   <span className="truncate text-xs text-muted-foreground">
+              { isSideBar && <div className="grid flex-1 text-left text-sm leading-tight">
+               <span className="truncate font-medium">{user.name}</span>
+               <span className="truncate text-xs text-muted-foreground">
                   {user.email}
-                </span>}
-              </div>
-              <EllipsisVerticalIcon className="ml-auto size-4" />
+                </span>
+              </div>}
+              <EllipsisVerticalIcon className=" size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent

@@ -8,13 +8,16 @@ import { products } from '@/lib/data'
 export default function Products() {
   return (
     <>
-    
+    <div className="">
     <Heading
      title={ "Products"}
     subtitle={'Manage your catalogue, pricing and stock levels.'}
     addItem={'Add Product'}/>
-                   <DataTable data={products} />
-
+</div>
+          
+          <div className=" mt-10 w-full min-w-0">   
+         <DataTable data={products} />
+</div> 
     </>
   )
 }

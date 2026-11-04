@@ -1,5 +1,6 @@
+import { DataTableSimple } from '@/components/dataTableSimple'
 import Heading from '@/components/Heading'
-import React from 'react'
+
 
 export default function LowStock() {
   return (
@@ -8,6 +9,7 @@ export default function LowStock() {
             title={ "Low Stock"}
            subtitle={'Products at or below their minimum stock level. Restock these first.'}
          />
+
     </>
 
   )

@@ -58,9 +58,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       
       <AppSidebar variant="inset"  />
-      <SidebarInset>
+      <SidebarInset className="min-w-0">
         <SiteHeader/>
-        <div className="px-5">{children}</div>
+        <div className="w-full bg-[#eaedf0]  min-w-0 px-5">{children}</div>
        
       </SidebarInset>
     </SidebarProvider>
